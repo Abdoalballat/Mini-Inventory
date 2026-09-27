@@ -16,19 +16,20 @@ class ImageKitService
         );
     }
 
-    public function uploadImage($file, $folder = 'products')
-    {
-        $uploadFile = $this->imageKit->uploadFiles([
-            'file' => fopen($file->getRealPath(), 'r'),
-            'fileName' => time() . '_' . $file->getClientOriginalName(),
-            'folder' => $folder,
-            'useUniqueFileName' => true,
-        ]);
+public function uploadImage($file)
+{
+    $imageKit = new \ImageKit\ImageKit(
+        config('services.imagekit.public_key'),
+        config('services.imagekit.private_key'),
+        config('services.imagekit.url_endpoint')
+    );
 
-        if (isset($uploadFile->result) && $uploadFile->result) {
-            return $uploadFile->result->url;
-        }
+    $upload = $imageKit->uploadFiles([
+        'file' => base64_encode(file_get_contents($file->getRealPath())),
+        'fileName' => time() . '_' . $file->getClientOriginalName(),
+        'folder' => 'products'
+    ]);
 
-        return null;
-    }
+    return $upload->result->url;
+}
 }
