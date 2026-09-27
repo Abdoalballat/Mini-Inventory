@@ -8,8 +8,7 @@
   },
   "routes": [
     {
-      "src": "/build/(.*)",
-      "dest": "/build/$1"
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",
@@ -18,6 +17,7 @@
   ],
   "env": {
     "APP_ENV": "production",
+    "ASSET_URL": "https://mini-inventory-eight.vercel.app",
     "APP_CONFIG_CACHE": "/tmp/config.php",
     "APP_EVENTS_CACHE": "/tmp/events.php",
     "APP_PACKAGES_CACHE": "/tmp/packages.php",
