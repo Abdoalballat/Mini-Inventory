@@ -24,6 +24,7 @@
   "env": {
     "APP_ENV": "production",
     "APP_DEBUG": "true",
+    "QUEUE_CONNECTION": "sync",
     "APP_URL": "https://mini-inventory-eight.vercel.app",
     "ASSET_URL": "https://mini-inventory-eight.vercel.app",
     "APP_CONFIG_CACHE": "/tmp/config.php",
@@ -37,5 +38,6 @@
     "SESSION_DRIVER": "cookie",
     "SESSION_SECURE_COOKIE": "true",
     "COMPOSER_IGNORE_PLATFORM_REQS": "1"
+    
   }
 }
