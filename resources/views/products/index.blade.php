@@ -49,20 +49,20 @@
 <body>
 
     @if(session('Succes'))
-    <div id="auto-dismiss-alert" class="alert alert-success rounded-4 border-0 small mb-3 alert-floating-center text-center" style="width: fit-content; margin-left: 25%;">
+    <div id="auto-dismiss-alert" class="alert alert-success rounded-4 border-0 small mb-3 alert-floating-center text-center">
     {{ session('Succes') }}
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
     @endif
     @if(session('Failed'))
-    <div id="auto-dismiss-alert" class="alert alert-danger rounded-4 border-0 small mb-3 alert-floating-center text-center" style="width: fit-content; margin-left: 25%;">
+    <div id="auto-dismiss-alert" class="alert alert-danger rounded-4 border-0 small mb-3 alert-floating-center text-center">
     {{ session('Succes') }}
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
     @endif
 
 @if (session('error'))
-<div class="alert alert-danger rounded-4 border-0 small mb-3 alert-floating-center text-center" style="width: fit-content; margin-left: 25%;">
+<div class="alert alert-danger rounded-4 border-0 small mb-3 alert-floating-center text-center">
             {{ session('error') }}
     </div>
 @endif
