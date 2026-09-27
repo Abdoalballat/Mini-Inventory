@@ -46,12 +46,14 @@ $imageUrl = null;
         $imageUrl = $imageKitService->uploadImage($request->file('image'));
     }
 
-    // هنا يتم الحفظ في الداتابيز
-    products::create([
-        'product_name' => $request->product_name,
-        'price'        => $request->price,
-        'image'        => $imageUrl,
-    ]);
+products::create([
+    'product_name' => $request->product_name,
+    'department'   => $request->department,
+    'description'  => $request->description,
+    'count'        => $request->count,
+    'price'        => $request->price,
+    'image'        => $imageUrl,
+]);
         return redirect()->route('products.index')->with('Succes',$request->product_name.' Has Been Created');
         // return response()->json($product,201); 
     }
