@@ -13,10 +13,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->trustProxies(at: '*');
         $middleware->alias(['users'=>\App\Http\Middleware\users::class]);
-    })
-//     ->withMiddleware(function (Middleware $middleware) {
-//     $middleware->statefulApi(); 
+        })
+        // ->withMiddleware(function (Middleware $middleware) {
+        // $middleware->statefulApi(); 
 // })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
