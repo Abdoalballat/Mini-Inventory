@@ -158,7 +158,7 @@
         </div>
 
         <div class="row g-3 g-md-4">
-            @forelse ($products as$product)
+            @forelse ($products as $product)
                 <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
                     <div class="card-custom h-100 p-3 d-flex flex-column justify-content-between">
                         <div>
