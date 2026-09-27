@@ -49,18 +49,23 @@
 <body>
 
     @if(session('Succes'))
-    <div id="auto-dismiss-alert" class="alert alert-success alert-floating rounded-4 border-0 small text-center shadow-sm">
-        {{ session('Succes') }}
-        <button type="button" class="btn-close ms-2" data-bs-dismiss="alert"></button>
+    <div id="auto-dismiss-alert" class="alert alert-success rounded-4 border-0 small mb-3 alert-floating-center text-center">
+    {{ session('Succes') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    @endif
+    @if(session('Failed'))
+    <div id="auto-dismiss-alert" class="alert alert-danger rounded-4 border-0 small mb-3 alert-floating-center text-center">
+    {{ session('Succes') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
     @endif
 
-    @if(session('Failed'))
-    <div id="auto-dismiss-alert" class="alert alert-danger alert-floating rounded-4 border-0 small text-center shadow-sm">
-        {{ session('Failed') }}
-        <button type="button" class="btn-close ms-2" data-bs-dismiss="alert"></button>
+@if (session('error'))
+<div class="alert alert-danger rounded-4 border-0 small mb-3 alert-floating-center text-center">
+            {{ session('error') }}
     </div>
-    @endif
+@endif
 
     <header class="main-header border-bottom">
         <div class="container">
@@ -139,9 +144,9 @@
                                     : asset('storage/' . $best_seller->image);
                             @endphp
                             <img src="{{ $bestSellerUrl }}"
-                                 alt="{{ $best_seller->product_name }}"
-                                 class="img-fluid rounded-3"
-                                 style="max-height: 100%; max-width: 100%; object-fit: contain;">
+                                alt="{{ $best_seller->product_name }}"
+                                class="img-fluid rounded-3"
+                                style="max-height: 100%; max-width: 100%; object-fit: contain;">
                         </div>
 
                         <h6 class="fw-bold mb-1 mt-2 text-dark">{{ $best_seller->product_name }}</h6>
