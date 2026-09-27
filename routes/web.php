@@ -7,11 +7,15 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::middleware('users')->group(function(){
 
     Route::controller(ProductsController::class)->group(function()
     {
-        Route::get('/','index')->name('products.index');
+        Route::get('products/index','index')->name('products.index');
         Route::post('products/store','store')->name('products.store');
         Route::get('products/create','create')->name('products.create');
         Route::get('products/edit/{id}','edit')->name('products.edit');
