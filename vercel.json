@@ -23,7 +23,7 @@
   ],
   "env": {
     "APP_ENV": "production",
-    "APP_DEBUG": "true",
+    "APP_DEBUG": "false",
     "QUEUE_CONNECTION": "sync","MAIL_MAILER": "smtp",
     "MAIL_HOST": "smtp.gmail.com",
     "MAIL_PORT": "587",
