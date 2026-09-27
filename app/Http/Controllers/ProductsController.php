@@ -63,21 +63,33 @@ public function edit($id)
     $product = products::findOrFail($id);
     return view('products.edit', compact('product'));
 }
-    public function update(product_validate $request , $id)
-    {
-            $product = products::findOrFail($id);
-            $validate =$request->validated();
+    public function update(product_validate $request, $id)
+{
+    $product = products::findOrFail($id);
+    $validate = $request->validated();
 
-            if($request->hasFile('image')){
-                if($product->image && Storage::disk('public')->exists($product->image)){
-                    Storage::disk('public')->delete($product->image);
-                }
-                $validate['image'] = $request->file('image')->store('photo', 'public');
-            }
-            $product->update($validate);
-            // return response()->json($product,200);
-            return redirect()->route('products.index')->with('Succes',$product->product_name.' Has Been Updated');
-        }
+    if ($request->hasFile('image')) {
+        $file = $request->file('image');
+
+        $imageKit = new \ImageKit\ImageKit(
+            config('services.imagekit.public_key'),
+            config('services.imagekit.private_key'),
+            config('services.imagekit.url_endpoint')
+        );
+
+        $upload = $imageKit->uploadFiles([
+            'file' => base64_encode(file_get_contents($file->getRealPath())),
+            'fileName' => time() . '_' . $file->getClientOriginalName(),
+            'folder' => 'products'
+        ]);
+
+        $validate['image'] = $upload->result->url;
+    }
+
+    $product->update($validate);
+
+    return redirect()->route('products.index')->with('Succes', $product->product_name . ' Has Been Updated');
+}
 
     public function destroy($id)
     {           
